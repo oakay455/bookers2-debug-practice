@@ -5,7 +5,7 @@ class Book < ApplicationRecord
 
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
-  
+
   def self.search_for(content, method)
     if method == 'perfect'
       Book.where(title: content)
@@ -13,7 +13,7 @@ class Book < ApplicationRecord
       Book.where('title LIKE?', content+'%')
     elsif method == 'backward'
       Book.where('title LIKE?', '%'+content)
-    else 
+    else
       Book.where('title LIKE?', '%'+content+'%')
     end
   end
